@@ -9,14 +9,19 @@ In Progress...
 3. Create .env file with following parameters 
 
 NODE_ENV=development
+
 DB_STRING=mongodb://localhost:12345/AuthDb
+
 DB_STRING_PROD="mongodb db live for production"
 
 GOOGLE_CLIENT_ID=
+
 GOOGLE_CLIENT_SECRET=
+
 GOOGLE_CALLBACK_URL=http://localhost:1234/google/callback
 
 
-# jwt
+
 JWT_SECRET_DEV=123
+
 JWT_SECRET_PROD=
