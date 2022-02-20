@@ -6,7 +6,7 @@ In Progress...
 
 1. Get Google Client Id and put it in environment.ts (frontend)
 2. Generate id_rsa_priv.pem on backend using keypair generator.
-3. Create .env file with following parameters 
+3. Create .env file with following parameters in backend.
 
 NODE_ENV=development
 
