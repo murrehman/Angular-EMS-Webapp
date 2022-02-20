@@ -25,3 +25,5 @@ GOOGLE_CALLBACK_URL=http://localhost:1234/google/callback
 JWT_SECRET_DEV=123
 
 JWT_SECRET_PROD=
+
+4. Run with ng server and node app.js
