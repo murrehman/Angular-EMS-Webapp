@@ -71,7 +71,7 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  //this method is when you use regular nodejs with Mongodb
+  //this method applies when you use regular nodejs with Mongodb
   getEmployees() {
     this.empService.getEmployeeList().subscribe((res: any) => {
       this.employees = res;
@@ -79,7 +79,7 @@ export class EmployeeComponent implements OnInit {
   }
 
 
-  // The below method is when you use firebase as database
+  // The below method applies when you use firebase as database
   // getEmployees() {
   //   console.log("getEmployees() is called")
   //   this.empService.getEmployeeList().subscribe((res: any) => {
