@@ -17,6 +17,7 @@ import { SocialLoginModule, GoogleLoginProvider } from "angularx-social-login";
 import { CookieService } from 'ngx-cookie-service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { environment } from 'src/environments/environment';
+import { SingleEmployeeComponent } from './single-employee/single-employee.component';
 
 // let config = new SocialAuthService([{
 //   id: GoogleLoginProvider.PROVIDER_ID,
@@ -30,7 +31,8 @@ import { environment } from 'src/environments/environment';
     EmployeeComponent,
     AuthComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    SingleEmployeeComponent
   ],
   imports: [
     BrowserModule,
