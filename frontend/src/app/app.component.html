@@ -1,10 +1,11 @@
-<nav class="navbar navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-light bg-light flex-nowrap">
+  <div class="container ">
     <a class="navbar-brand">Employee Mean App</a>
   </div>
-  <button class="btn btn-primary mr-3" *ngIf="! _authService.loggedIn()" routerLink="/"
+  <button class="btn btn-primary mr-5" *ngIf="! _authService.loggedIn()" routerLink="/"
     type="submit">Login/Register</button>
-  <button class="btn btn-primary mr-3" *ngIf=" _authService.loggedIn()" (click)="_authService.logoutUser()"
+
+  <button class="btn btn-primary mr-5" *ngIf=" _authService.loggedIn()" (click)="_authService.logoutUser()"
     routerLink="/" type="submit">Log Out</button>
 </nav>
 <router-outlet></router-outlet>

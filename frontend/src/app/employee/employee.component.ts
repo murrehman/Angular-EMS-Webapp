@@ -17,7 +17,7 @@ export class EmployeeComponent implements OnInit {
   rep: any;
 
   p: number = 1;
-  count: number = 5;
+  count: number = 6;
 
   constructor(private fb: FormBuilder, private empService: EmployeeService) {
     // console.log(Date.now());
@@ -76,6 +76,7 @@ export class EmployeeComponent implements OnInit {
   getEmployees() {
     this.empService.getEmployeeList().subscribe((res: any) => {
       this.employees = res;
+
     })
   }
 

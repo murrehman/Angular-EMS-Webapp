@@ -21,7 +21,7 @@ export class SingleEmployeeComponent implements OnInit {
       let pid = param.get('id')
       // this.getEmployeebyId(pid)
       this._du.getEmployeebyId(pid).subscribe(res => {
-        console.log(res)
+        // console.log(res)
         this.item = res;
       })
     })
