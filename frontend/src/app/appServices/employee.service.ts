@@ -31,12 +31,12 @@ export class EmployeeService {
 
 
   deleteEmployee(id: any) {
-    return this.http.delete(`${this.url}/${id}`)
+    return this.http.delete<Employee>(`${this.url}/${id}`)
   }
 
 
   updateEmployee(emp: Employee) {
-    return this.http.put(`${this.url}/${emp._id}`, emp)
+    return this.http.put<Employee>(`${this.url}/${emp._id}`, emp)
   }
 
 

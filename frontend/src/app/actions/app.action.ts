@@ -1,3 +1,5 @@
+import { Employee } from "../appModels/employee.model"
+
 export class GetEmployees {
     static readonly type = '[Employees] Get'
 }
@@ -6,19 +8,19 @@ export class GetEmployees {
 export class AddEmployees {
     static readonly type = '[Employees] Add'
 
-    constructor(public payload: any) { }
+    constructor(public payload: Employee) { }
 }
 
 
 export class UpdateEmployees {
     static readonly type = '[Employees] Update'
 
-    constructor(public payload: any, public id: number, public i: number) { }
+    constructor(public payload: any) { }
 }
 
 
 export class DeleteEmployees {
     static readonly type = '[Employees] Delete'
 
-    constructor(public id: number) { }
+    constructor(public id: any) { }
 }

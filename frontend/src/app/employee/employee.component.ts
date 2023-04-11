@@ -5,7 +5,7 @@ import { EmployeeService } from '../appServices/employee.service';
 import { Select, Store } from '@ngxs/store';
 import { AppState, EmployeeModel } from '../states/app.states';
 import { Observable } from 'rxjs';
-import { GetEmployees } from '../actions/app.action';
+import { AddEmployees, DeleteEmployees, GetEmployees, UpdateEmployees } from '../actions/app.action';
 
 @Component({
   selector: 'app-employee',
@@ -45,21 +45,24 @@ export class EmployeeComponent implements OnInit {
   onEmpSubmit() {
     if (this.empForm.valid) {
       if (this.editMode) {
-        this.empService.updateEmployee(this.empForm.value).subscribe(res => {
-          console.log(res)
-          this.getEmployees();
-        },
-          err => {
-            console.log(err)
-          })
+        console.log("on dispatch");
+
+        this.store.dispatch(new UpdateEmployees(this.empForm.value))
+        // this.empService.updateEmployee(this.empForm.value).subscribe(res => {
+        //   console.log(res)
+        //   this.getEmployees();
+        // })
+
       } else {
-        this.empService.addEmployee(this.empForm.value).subscribe(res => {
-          console.log(res)
-          this.getEmployees();
-        },
-          err => {
-            console.log(err)
-          })
+        this.store.dispatch(new AddEmployees(this.empForm.value))
+        this.getEmployees()
+        // this.empService.addEmployee(this.empForm.value).subscribe(res => {
+        //   console.log(res)
+        //   this.getEmployees();
+        // },
+        //   err => {
+        //     console.log(err)
+        //   })
       }
     }
     this.empForm.reset();
@@ -111,14 +114,15 @@ export class EmployeeComponent implements OnInit {
   //THIS METHOD IF USING CONVENTIONAL NODEJS WITH MONGODB
   onDeleteEmployee(id: any) {
     if (confirm('Do you want to delete this Employee?')) {
-      this.empService.deleteEmployee(id).subscribe((res) => {
-        console.log(res)
-        this.getEmployees();
-        console.log('Deleted Successfully!')
-      },
-        (err) => {
-          console.log(err)
-        })
+      this.store.dispatch(new DeleteEmployees(id))
+      // this.empService.deleteEmployee(id).subscribe((res) => {
+      //   console.log(res)
+      // this.getEmployees();
+      //   console.log('Deleted Successfully!')
+      // },
+      // (err) => {
+      //   console.log(err)
+      // })
     }
   }
 

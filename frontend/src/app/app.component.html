@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light bg-light flex-nowrap">
   <div class="container ">
-    <a class="navbar-brand">Employee Mean App</a>
+    <a class="navbar-brand" routerLink="/">Employee Mean App</a>
   </div>
   <button class="btn btn-primary mr-5" *ngIf="! _authService.loggedIn()" routerLink="/login"
     type="submit">Login/Register</button>
