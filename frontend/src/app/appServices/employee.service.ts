@@ -21,7 +21,7 @@ export class EmployeeService {
   }
 
   getEmployeeList() {
-    return this.http.get(this.url)
+    return this.http.get<Employee[]>(this.url)
   }
 
   //get single employee

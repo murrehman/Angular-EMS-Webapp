@@ -18,6 +18,10 @@ import { CookieService } from 'ngx-cookie-service';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { environment } from 'src/environments/environment';
 import { SingleEmployeeComponent } from './single-employee/single-employee.component';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { AppState } from './states/app.states';
+import { HomeComponent } from './home/home.component';
 
 // let config = new SocialAuthService([{
 //   id: GoogleLoginProvider.PROVIDER_ID,
@@ -32,7 +36,8 @@ import { SingleEmployeeComponent } from './single-employee/single-employee.compo
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    SingleEmployeeComponent
+    SingleEmployeeComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +47,9 @@ import { SingleEmployeeComponent } from './single-employee/single-employee.compo
     ReactiveFormsModule,
     FormsModule,
     SocialLoginModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    NgxsModule.forRoot([AppState]),
+    NgxsLoggerPluginModule.forRoot()
   ],
   providers: [FormBuilder,
     HttpClient,

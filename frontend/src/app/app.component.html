@@ -2,7 +2,7 @@
   <div class="container ">
     <a class="navbar-brand">Employee Mean App</a>
   </div>
-  <button class="btn btn-primary mr-5" *ngIf="! _authService.loggedIn()" routerLink="/"
+  <button class="btn btn-primary mr-5" *ngIf="! _authService.loggedIn()" routerLink="/login"
     type="submit">Login/Register</button>
 
   <button class="btn btn-primary mr-5" *ngIf=" _authService.loggedIn()" (click)="_authService.logoutUser()"

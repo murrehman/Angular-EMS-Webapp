@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { Employee } from '../appModels/employee.model';
 import { EmployeeService } from '../appServices/employee.service';
+import { Select, Store } from '@ngxs/store';
+import { AppState, EmployeeModel } from '../states/app.states';
+import { Observable } from 'rxjs';
+import { GetEmployees } from '../actions/app.action';
 
 @Component({
   selector: 'app-employee',
@@ -15,11 +19,13 @@ export class EmployeeComponent implements OnInit {
   editMode = false;
   employees!: any;
   rep: any;
+  @Select(AppState.getEmployeesList) employees$!: Observable<Employee[]>
+  @Select(AppState.getEmployeesLoaded) employeesLoaded$!: Observable<boolean>;
 
   p: number = 1;
   count: number = 6;
 
-  constructor(private fb: FormBuilder, private empService: EmployeeService) {
+  constructor(private fb: FormBuilder, private empService: EmployeeService, private store: Store) {
     // console.log(Date.now());
   }
 
@@ -74,10 +80,16 @@ export class EmployeeComponent implements OnInit {
 
   //this method applies when you use regular nodejs with Mongodb
   getEmployees() {
-    this.empService.getEmployeeList().subscribe((res: any) => {
-      this.employees = res;
+    // this.empService.getEmployeeList().subscribe((res: any) => {
+    //   this.employees = res;
 
+    // })
+    this.employeesLoaded$.subscribe(res => {
+      if (!res) {
+        this.store.dispatch(new GetEmployees())
+      }
     })
+
   }
 
 

@@ -13,25 +13,27 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-4"
-            *ngFor="let item of employees | paginate: {itemsPerPage: count, currentPage: p}; let i = index">
-            <div class="card mb-3">
-                <div class="card-body">
-                    <a class="card-title" [routerLink]="['/singleEmployee', item._id]">{{item.name}}</a>
-                    <h6 class="card-subtitle mb-2 text-muted">{{item.position}}</h6>
-                    <span class="badge " [ngClass]="{
+        <ng-container *ngIf="(employees$ | async) as employees">
+            <div class="col-md-4"
+                *ngFor="let item of employees | paginate: {itemsPerPage: count, currentPage: p} ; let i = index">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <a class="card-title" [routerLink]="['/singleEmployee', item._id]">{{item.name}}</a>
+                        <h6 class="card-subtitle mb-2 text-muted">{{item.position}}</h6>
+                        <span class="badge " [ngClass]="{
                         'badge-success': item.dept =='Design',
                         'badge-danger': item.dept =='Development'
                     }">{{item.dept}}</span>
-                    <hr>
-                    <button type="button" class="btn btn-sm btn-outline-primary mr-2" data-toggle="modal"
-                        data-target="#myModal" (click)="onEditEmployee(item)">Edit</button>
-                    <button type=" button" class="btn btn-sm btn-outline-danger"
-                        (click)="onDeleteEmployee(item._id)">Delete</button>
-                    <!-- PLEASE USE onDeleteEmployee(item._id,i) IF USING FIREBASE -->
+                        <hr>
+                        <button type="button" class="btn btn-sm btn-outline-primary mr-2" data-toggle="modal"
+                            data-target="#myModal" (click)="onEditEmployee(item)">Edit</button>
+                        <button type=" button" class="btn btn-sm btn-outline-danger"
+                            (click)="onDeleteEmployee(item._id)">Delete</button>
+                        <!-- PLEASE USE onDeleteEmployee(item._id,i) IF USING FIREBASE -->
+                    </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
     </div>
     <!--Including the pagination control.-->
     <div class="text-right">
