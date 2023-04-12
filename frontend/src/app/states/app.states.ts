@@ -2,7 +2,7 @@ import { Employee } from "../appModels/employee.model";
 import { Injectable } from "@angular/core";
 import { Action, Selector, State, StateContext } from "@ngxs/store";
 import { EmployeeService } from "../appServices/employee.service";
-import { AddEmployees, DeleteEmployees, GetEmployees, UpdateEmployees } from "../actions/app.action";
+import { AddEmployees, DeleteEmployees, GetEmployees, SetSelectedEmployee, UpdateEmployees } from "../actions/app.action";
 import { tap } from 'rxjs/operators';
 
 
@@ -11,6 +11,7 @@ import { tap } from 'rxjs/operators';
 export class EmployeeModel {
     employees!: Employee[]
     employeesLoaded!: boolean
+    selectedEmployee!: Employee
 }
 
 
@@ -18,7 +19,8 @@ export class EmployeeModel {
     name: 'appstate',
     defaults: {
         employees: [],
-        employeesLoaded: false
+        employeesLoaded: false,
+        selectedEmployee: null as any
     }
 
 })
@@ -40,6 +42,11 @@ export class AppState {
         return state.employeesLoaded;
     }
 
+    @Selector()
+    static getSelectedEmployee(state: EmployeeModel) {
+        return state.selectedEmployee;
+    }
+
 
 
     @Action(GetEmployees)
@@ -54,6 +61,33 @@ export class AppState {
                 employeesLoaded: true
             })
         }))
+    }
+
+
+
+    @Action(SetSelectedEmployee)
+    setSelectedEmployee({ getState, setState }: StateContext<EmployeeModel>, { id }: SetSelectedEmployee) {
+        const state = getState()
+        const empList = state.employees
+        const index = empList.findIndex(emp => emp._id === id)
+        if (empList.length > 0) {
+            setState({
+                ...state,
+                selectedEmployee: empList[index]
+            })
+            return null
+        } else {
+            return this._empService.getEmployeebyId(id).pipe(tap(res => {
+                const state = getState()
+                const empList = [res]
+                setState({
+                    ...state,
+                    employees: empList,
+                    selectedEmployee: empList[0]
+                })
+
+            }))
+        }
     }
 
     @Action(AddEmployees)

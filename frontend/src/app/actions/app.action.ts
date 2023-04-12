@@ -5,6 +5,11 @@ export class GetEmployees {
 }
 
 
+export class SetSelectedEmployee {
+    static readonly type = '[singleEmployee] Set'
+    constructor(public id: any) { }
+}
+
 export class AddEmployees {
     static readonly type = '[Employees] Add'
 
