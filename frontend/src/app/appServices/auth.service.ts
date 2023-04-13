@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,9 @@ export class AuthService {
   // private gAuthUrl = "https://localhost:5000/auth"
   private gAuthUrl = "http://localhost:3000/auth"
 
+
+  tokenExpirationTimer: any;
+
   constructor(private http: HttpClient, private _router: Router) { }
 
   registerUser(user: any) {
@@ -21,6 +25,7 @@ export class AuthService {
 
   loginUser(user: any) {
     return this.http.post<any>(this._loginUrl, user)
+
   }
 
   google() {
@@ -44,5 +49,19 @@ export class AuthService {
   logoutUser() {
     localStorage.removeItem('token')
     this._router.navigate(['/'])
+
+    if (this.tokenExpirationTimer) {
+      clearTimeout(this.tokenExpirationTimer)
+    }
+    this.tokenExpirationTimer = null;
+  }
+
+  autoLogoutUSer(expirationDuration: any) {
+    this.tokenExpirationTimer = setTimeout(() => {
+      alert('Session Expired! Please Login Again.')
+      this.logoutUser();
+    }, expirationDuration * 1000)
+    console.log(expirationDuration);
+
   }
 }
