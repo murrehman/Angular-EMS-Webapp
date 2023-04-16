@@ -16,13 +16,10 @@ export class AuthGuard implements CanActivate {
 
     if (this._authService.loggedIn()) {
 
-      console.log("call on If========");
-
       return true
     }
     else {
       this._router.navigate(['/']);
-      console.log("click on else---33333333333");
 
       return false
     }
