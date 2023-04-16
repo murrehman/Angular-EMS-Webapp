@@ -1,5 +1,11 @@
 # Employee Management System - In Progress...
 
+Simple webbApp includes:
+
+- Authentication and Authorization (OAuth, AuthGuard)
+- Social Media Login feature (Google Login only for now)
+- State Mangement (NgXs)
+- RestApi
 
 #Instructions
 
