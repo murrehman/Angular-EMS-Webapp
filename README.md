@@ -1,6 +1,5 @@
-# AngularAuth
+# Employee Management System - In Progress...
 
-In Progress...
 
 #Instructions
 
