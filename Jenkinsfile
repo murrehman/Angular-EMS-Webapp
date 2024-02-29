@@ -30,18 +30,13 @@ pipeline {
             }
         }
 
-        stage('Print Environment') {
-            steps {
-                sh 'printenv'
-            }
-        }
- 
         stage('Build') {
             steps {
- sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/npm install'
-
-
-              
+           dir('frontend') {
+                    // Install dependencies
+                    sh 'npm install'
+                    // Build project
+                    sh 'npm run build'
             }
         }
 
