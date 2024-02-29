@@ -2,11 +2,15 @@ pipeline {
     agent any
 
     
-    
+    tools {
+       // jdk 'Java17' // These are the names in Jenkins for JDK and Maven
+       // maven 'Maven3'
+       
+    }
 
     environment {
         APP_NAME = "ANGULAR EMS WEBAPP"
-        // RELEASE = "1.0.0"
+        RELEASE = "1.0.0"
         // DOCKER_USER = "bilal4178"
         // DOCKER_PASS = 'dockerhub'
         // IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
@@ -22,22 +26,19 @@ pipeline {
             }
         }
 
-        // stage('Git') {
-        //     steps {
-        //         git branch: 'main',
-        //             credentialsId: 'github',
-        //             url: 'https://github.com/murrehman/Angular-EMS-Webapp'
-        //     }
-        // }
+        stage('Git') {
+            steps {
+                git branch: 'main',
+                    credentialsId: 'github',
+                    url: 'https://github.com/murrehman/Angular-EMS-Webapp'
+            }
+        }
 
-        // stage('Build') {
-        //     steps {
-        //    dir('frontend') {
-        //             // Install dependencies
-        //             sh 'npm install'
-        //             // Build project
-        //             sh 'npm run build'
-        //     }
+        stage('Build') {
+            steps {
+                sh 'npm install'
+                sh 'npm run build'
+            }
         }
 
         // stage('Test') {
@@ -84,4 +85,4 @@ pipeline {
     }
 
     
-    
+    }
