@@ -30,12 +30,13 @@ pipeline {
             }
         }
 
-       stage('Build') {
-    steps {
-        // Change directory to 'frontend' and execute npm commands
-        sh 'cd frontend && npm install && npm run build'
-    }
-}
+        stage('Build') {
+            steps {
+               sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/npm install'
+
+              
+            }
+        }
 
         // stage('Test') {
         //     steps {
