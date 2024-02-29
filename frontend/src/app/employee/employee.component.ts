@@ -22,8 +22,8 @@ export class EmployeeComponent implements OnInit {
   @Select(AppState.getEmployeesList) employees$!: Observable<Employee[]>
   @Select(AppState.getEmployeesLoaded) employeesLoaded$!: Observable<boolean>;
 
-  p: number = 1;
-  count: number = 6;
+  // p: number = 1;
+  // count: number = 9;
 
   constructor(private fb: FormBuilder, private empService: EmployeeService, private store: Store) {
     // console.log(Date.now());

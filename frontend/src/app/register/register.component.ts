@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../appServices/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
 import { SocialAuthService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
+import { Subscription } from 'rxjs';
 // import { SocialUser } from "angularx-social-login";
 
 @Component({
@@ -12,12 +13,13 @@ import { GoogleLoginProvider } from "angularx-social-login";
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnInit, OnDestroy {
 
   loginUserData: any = {}
   _user!: any;
   loggedIn!: boolean;
-  cookee: any
+  cookee: any;
+  subscription!: Subscription
 
   constructor(private _auth: AuthService, private router: Router, private auth: SocialAuthService, private cookie: CookieService) { }
 
@@ -47,8 +49,9 @@ export class RegisterComponent implements OnInit {
   }
 
   loginUser() {
-    this._auth.loginUser(this.loginUserData).subscribe(
+    this.subscription = this._auth.loginUser(this.loginUserData).subscribe(
       res => {
+        sessionStorage.setItem('logged', 'true');
         localStorage.setItem('token', res.token);
         this.router.navigate(['/employee'])
 
@@ -103,5 +106,9 @@ export class RegisterComponent implements OnInit {
   // googleSignOut(): void {
   //   this.googleAuth.signOut();
   // }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
 }
 

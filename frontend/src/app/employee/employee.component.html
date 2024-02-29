@@ -14,15 +14,18 @@
 
     <div class="row">
         <ng-container *ngIf="(employees$ | async) as employees">
-            <div class="col-md-4"
-                *ngFor="let item of employees | paginate: {itemsPerPage: count, currentPage: p} ; let i = index">
+            <div class="col-md-4" *ngFor="let item of employees  ; let i = index">
                 <div class="card mb-3">
                     <div class="card-body">
                         <a class="card-title" [routerLink]="['/singleEmployee', item._id]">{{item.name}}</a>
                         <h6 class="card-subtitle mb-2 text-muted">{{item.position}}</h6>
                         <span class="badge " [ngClass]="{
                         'badge-success': item.dept =='Design',
-                        'badge-danger': item.dept =='Development'
+                        'badge-danger': item.dept =='Development',
+                        'badge-secondary': item.dept =='HR',
+                        'badge-primary': item.dept =='Sales',
+                        'badge-light': item.dept =='Production',
+                        'badge-dark': item.dept =='Support'
                     }">{{item.dept}}</span>
                         <hr>
                         <button type="button" class="btn btn-sm btn-outline-primary mr-2" data-toggle="modal"
@@ -36,9 +39,9 @@
         </ng-container>
     </div>
     <!--Including the pagination control.-->
-    <div class="text-right">
+    <!-- <div class="text-right">
         <pagination-controls (pageChange)="p = $event"></pagination-controls>
-    </div>
+    </div> -->
 </div>
 
 
@@ -77,6 +80,10 @@
                         <select class="custom-select" formControlName="dept">
                             <option value="Design">Design</option>
                             <option value="Development">Development</option>
+                            <option value="HR">HR</option>
+                            <option value="Sales">Sales</option>
+                            <option value="Production">Production</option>
+                            <option value="Support">Support</option>
                         </select>
                     </div>
                 </div>
