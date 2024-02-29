@@ -1,6 +1,20 @@
 pipeline {
     agent any
 
+    
+    
+
+    environment {
+        APP_NAME = "ANGULAR EMS WEBAPP"
+        // RELEASE = "1.0.0"
+        // DOCKER_USER = "bilal4178"
+        // DOCKER_PASS = 'dockerhub'
+        // IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        // IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        // JENKINS_API_TOKEN =credentials("JENKINS_API_TOKEN")
+
+    }
+
     stages {
         stage('Cleanup Workspace') {
             steps {
@@ -16,14 +30,55 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                // Activate Node.js version managed by nvm
-                sh 'export NVM_DIR="/root/.nvm" && [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" && nvm use 14.17.5'
-                // Run npm install and npm run build
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
+       stage('Build') {
+    steps {
+        // Change directory to 'frontend' and execute npm commands
+        sh 'cd frontend && npm install && npm run build'
     }
 }
+
+        // stage('Test') {
+        //     steps {
+        //         sh 'mvn test'
+        //     }
+        // }
+        
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         script {
+        //             withSonarQubeEnv(credentialsId: 'sonar') {
+        //                 sh 'mvn sonar:sonar'
+        //             }
+        //         }
+        //     }
+        // }
+        
+        // stage("Build & Push Docker Image") {
+        //     steps {
+        //         script {
+        //             docker.withRegistry('',DOCKER_PASS) {
+        //                 docker_image = docker.build "${IMAGE_NAME}"
+        //             }
+
+        //             docker.withRegistry('',DOCKER_PASS) {
+        //                 docker_image.push("${IMAGE_TAG}")
+        //                 docker_image.push('latest')
+        //             }
+        //         }
+        //     } 
+
+        // }
+
+        // stage("Trigger CD Pipeline") {
+        //     steps {
+        //         script {
+        //             sh "curl -v -k --user admin:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'http://34.16.175.97:8080/job/gitops-complete-pipeline/buildWithParameters?token=gitops-token'"
+        //         }
+        //     }
+
+        // }
+
+    }
+
+    
+    }
