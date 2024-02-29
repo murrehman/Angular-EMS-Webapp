@@ -30,12 +30,13 @@ pipeline {
             }
         }
 
-       stage('Build') {
-    steps {
-        // Change directory to 'frontend' and execute npm commands
-        sh 'cd frontend && npm install && npm run build'
-    }
-}
+        stage('Build') {
+            steps {
+                // Change directory to 'frontend' and execute npm commands using the absolute path
+                sh '/root/.nvm/versions/node/v14.17.5/bin/npm install'
+                sh '/root/.nvm/versions/node/v14.17.5/bin/npm run build'
+            }
+        }
 
         // stage('Test') {
         //     steps {
