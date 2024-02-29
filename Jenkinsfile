@@ -22,22 +22,22 @@ pipeline {
             }
         }
 
-        stage('Git') {
-            steps {
-                git branch: 'main',
-                    credentialsId: 'github',
-                    url: 'https://github.com/murrehman/Angular-EMS-Webapp'
-            }
-        }
+        // stage('Git') {
+        //     steps {
+        //         git branch: 'main',
+        //             credentialsId: 'github',
+        //             url: 'https://github.com/murrehman/Angular-EMS-Webapp'
+        //     }
+        // }
 
-        stage('Build') {
-            steps {
-           dir('frontend') {
-                    // Install dependencies
-                    sh 'npm install'
-                    // Build project
-                    sh 'npm run build'
-            }
+        // stage('Build') {
+        //     steps {
+        //    dir('frontend') {
+        //             // Install dependencies
+        //             sh 'npm install'
+        //             // Build project
+        //             sh 'npm run build'
+        //     }
         }
 
         // stage('Test') {
@@ -84,4 +84,4 @@ pipeline {
     }
 
     
-    }
+    
