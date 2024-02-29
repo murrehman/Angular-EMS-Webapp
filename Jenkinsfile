@@ -2,11 +2,7 @@ pipeline {
     agent any
 
     
-    tools {
-       // jdk 'Java17' // These are the names in Jenkins for JDK and Maven
-       // maven 'Maven3'
-       
-    }
+    
 
     environment {
         APP_NAME = "ANGULAR EMS WEBAPP"
