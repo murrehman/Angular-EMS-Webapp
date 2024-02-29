@@ -36,7 +36,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'npm install'
+                sh 'cd frontend && npm install'
                 sh 'npm run build'
             }
         }
