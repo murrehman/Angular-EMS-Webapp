@@ -35,6 +35,7 @@ pipeline {
                 sh 'printenv'
             }
         }
+ }
         stage('Build') {
             steps {
                sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/nvm exec npm install'
