@@ -38,7 +38,8 @@ pipeline {
  
         stage('Build') {
             steps {
-               sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/nvm exec npm install'
+ sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/npm install'
+
 
               
             }
