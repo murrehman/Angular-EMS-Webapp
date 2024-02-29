@@ -29,7 +29,12 @@ pipeline {
                     url: 'https://github.com/murrehman/Angular-EMS-Webapp'
             }
         }
-
+ stages {
+        stage('Print Environment') {
+            steps {
+                sh 'printenv'
+            }
+        }
         stage('Build') {
             steps {
                sh 'cd frontend && /root/.nvm/versions/node/v21.6.2/bin/nvm exec npm install'
