@@ -30,13 +30,12 @@ pipeline {
             }
         }
 
-        stage('Build') {
-            steps {
-                sh 'cd frontend'
-                sh 'npm install'
-                sh 'npm run build'
-            }
-        }
+       stage('Build') {
+    steps {
+        // Change directory to 'frontend' and execute npm commands
+        sh 'cd frontend && npm install && npm run build'
+    }
+}
 
         // stage('Test') {
         //     steps {
