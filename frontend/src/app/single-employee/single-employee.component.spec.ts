@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SingleEmployeeComponent } from './single-employee.component';
+import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
+import { NgxsModule } from '@ngxs/store';
 
 describe('SingleEmployeeComponent', () => {
   let component: SingleEmployeeComponent;
@@ -8,9 +10,14 @@ describe('SingleEmployeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SingleEmployeeComponent ]
+      imports: [
+        NgxsModule.forRoot(),
+        HttpClientModule,
+        RouterModule.forRoot([]),
+      ],
+      declarations: [SingleEmployeeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

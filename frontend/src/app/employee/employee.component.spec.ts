@@ -1,6 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmployeeComponent } from './employee.component';
+import { FormBuilder, FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { NgxsModule } from '@ngxs/store';
 
 describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
@@ -8,9 +12,17 @@ describe('EmployeeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EmployeeComponent ]
+      imports: [
+        NgxsModule.forRoot(),
+        HttpClientModule,
+        RouterModule.forRoot([]),
+      ],
+      providers: [
+        FormBuilder
+      ],
+      declarations: [EmployeeComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -65,11 +65,11 @@ import { HomeComponent } from './home/home.component';
       useValue: {
         autoLogin: false,
         providers: [
-          // {
-          //   id: GoogleLoginProvider.PROVIDER_ID,
-          //   provider: new GoogleLoginProvider(
-          //     environment.gClientId)
-          // },
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              environment.gClientId)
+          },
         ]
       } as SocialAuthServiceConfig,
     }
