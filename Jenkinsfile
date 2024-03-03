@@ -41,6 +41,9 @@ pipeline {
         }
 
         stage('Test') {
+            environment {
+                CHROME_BIN = 'usr/bin/google-chrome' // Replace this with the actual path to your Chrome binary
+            }
             steps {
                 sh 'cd frontend && ng test --progress=false --watch false'
             }
