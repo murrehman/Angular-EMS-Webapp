@@ -42,7 +42,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'ng test --progress=false --watch false'
+                sh 'cd frontend && ng test --progress=false --watch false'
             }
         }
         
