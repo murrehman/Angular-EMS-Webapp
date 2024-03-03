@@ -40,11 +40,11 @@ pipeline {
             }
         }
 
-        // stage('Test') {
-        //     steps {
-        //         sh 'mvn test'
-        //     }
-        // }
+        stage('Test') {
+            steps {
+                sh 'ng test --progress=false --watch false'
+            }
+        }
         
         // stage('SonarQube Analysis') {
         //     steps {
