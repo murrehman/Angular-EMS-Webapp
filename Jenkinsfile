@@ -43,9 +43,7 @@ pipeline {
         stage('Test') {
             
             steps {
-                withEnv(["CHROME_BIN=/usr/bin/google-chrome"]) {
-                sh 'cd frontend && ng test --progress=false --watch false'
-                }
+                sh 'cd frontend && ng test --progress=false --watch false' 
             }
         }
         
