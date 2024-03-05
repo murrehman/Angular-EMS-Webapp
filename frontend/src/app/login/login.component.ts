@@ -9,14 +9,12 @@ import { GoogleLoginProvider } from "angularx-social-login";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   registerUserData: any = {}
 
   constructor(private _auth: AuthService, private router: Router, private auth: SocialAuthService) { }
 
-  ngOnInit(): void {
-  }
 
   registerUser() {
     this._auth.registerUser(this.registerUserData).subscribe(
