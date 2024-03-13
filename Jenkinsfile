@@ -69,7 +69,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
-                        docker_image = docker.build "${IMAGE_NAME}", -f "${PATH}" .
+                        docker_image = docker.build "${IMAGE_NAME}" --file "${PATH}" .
                     }
 
                     docker.withRegistry('',DOCKER_PASS) {
