@@ -2,7 +2,8 @@ FROM node:14.21.3
 WORKDIR /app
 COPY . .
 RUN npm install -g @angular/cli@12
-COPY package.json package-lock.json /app/
+COPY package.json .
+COPY package-lock.json .
 RUN npm ci
 
 
