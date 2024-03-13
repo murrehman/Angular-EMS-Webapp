@@ -15,6 +15,7 @@ pipeline {
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        PATH = 'frontend/Dockerfile'
         //JENKINS_API_TOKEN =credentials("JENKINS_API_TOKEN")
 
     }
@@ -68,7 +69,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
-                        docker_image = docker.build "${IMAGE_NAME}", -f "./frontend/Dockerfile"
+                        docker_image = docker.build "${IMAGE_NAME}", -f "${PATH}" .
                     }
 
                     docker.withRegistry('',DOCKER_PASS) {
