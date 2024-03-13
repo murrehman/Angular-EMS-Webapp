@@ -67,9 +67,8 @@ pipeline {
         stage("Build & Push Docker Image") {
             steps {
                 script {
-                    def dockerfilePath = '/frontend/'
                     docker.withRegistry('',DOCKER_PASS) {
-                        docker_image = docker.build ("${IMAGE_NAME}", "-f ${dockerfilePath}")
+                        docker_image = docker.build "${IMAGE_NAME}" " ${./frontend}"
                     }
 
                     docker.withRegistry('',DOCKER_PASS) {
