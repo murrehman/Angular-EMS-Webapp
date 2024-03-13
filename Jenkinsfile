@@ -9,7 +9,7 @@ pipeline {
     // }
 
     environment {
-        APP_NAME = "ANGULAR-EMS-WEBAPP"
+        APP_NAME = "angular-ems-webapp"
         RELEASE = "1.0.0"
         DOCKER_USER = "muteeurrehmanbajwa"
         DOCKER_PASS = 'dockerhub'
