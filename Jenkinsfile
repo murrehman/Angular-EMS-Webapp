@@ -68,7 +68,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('',DOCKER_PASS) {
-                        docker_image = docker.build ("${IMAGE_NAME}", "--file /frontend/Dockerfile .")
+                        docker_image = docker.build ("${IMAGE_NAME}", "--file ./frontend/Dockerfile .")
                     }
 
                     docker.withRegistry('',DOCKER_PASS) {
